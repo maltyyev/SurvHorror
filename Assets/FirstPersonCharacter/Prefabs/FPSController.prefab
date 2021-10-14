@@ -366,6 +366,13 @@ MonoBehaviour:
   _panels: {fileID: 0}
   _bindingNameDisplayText: {fileID: 0}
   _bindingIconDisplayImage: {fileID: 0}
+  _crosshairSettings:
+    StandardCrosshair: {fileID: 21300000, guid: bc99f5fc5f14a24469964e839ee31988,
+      type: 3}
+    InteractionCrosshair: {fileID: 21300000, guid: 52b6abe87da351d4a87be24c9bfc4f19,
+      type: 3}
+    WeaponCrosshair: {fileID: 21300000, guid: 0ed95e05252ab7e46856e7d00fe7a632, type: 3}
+  _crosshairImage: {fileID: 0}
   _distance: 3
   _layerMask:
     serializedVersion: 2

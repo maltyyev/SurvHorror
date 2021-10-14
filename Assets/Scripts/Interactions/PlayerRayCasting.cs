@@ -4,9 +4,20 @@ using UnityEngine.UI;
 
 public class PlayerRayCasting : MonoBehaviour
 {
+    [System.Serializable]
+    public struct Crosshair
+    {
+        public Sprite StandardCrosshair;
+        public Sprite InteractionCrosshair;
+        public Sprite WeaponCrosshair;
+    }
+
     [SerializeField] private GameObject _panels;
     [SerializeField] private TextMeshProUGUI _bindingNameDisplayText;
     [SerializeField] private Image _bindingIconDisplayImage;
+
+    [SerializeField] private Crosshair _crosshairSettings;
+    [SerializeField] private Image _crosshairImage;
 
     #region Raycasting variables
 
@@ -32,6 +43,8 @@ public class PlayerRayCasting : MonoBehaviour
         _raycastHitsCount = Physics.RaycastNonAlloc(transform.position, transform.TransformDirection(Vector3.forward), _raycastHits, _distance, _layerMask);
         if (_raycastHitsCount > 0)
         {
+            _crosshairImage.sprite = _crosshairSettings.InteractionCrosshair;
+
             _buttonIcon = _inputManager.GetIconForBinding(_inputManager.Controls.Player.Interaction, out string currentBindingInput);
 
             if (_buttonIcon)
@@ -51,6 +64,8 @@ public class PlayerRayCasting : MonoBehaviour
         }
         else
         {
+            _crosshairImage.sprite = _crosshairSettings.StandardCrosshair;
+
             _panels.SetActive(false);
             _bindingIconDisplayImage.gameObject.SetActive(false);
             _bindingNameDisplayText.gameObject.SetActive(false);
