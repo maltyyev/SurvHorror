@@ -15,7 +15,7 @@ public class PlayerRayCasting : MonoBehaviour
 
     private RaycastHit[] _raycastHits = new RaycastHit[1];
     private int _raycastHitsCount;
-    private BaseInteractionController _controller;
+    private Sprite _buttonIcon;
 
     #endregion
 
@@ -32,11 +32,11 @@ public class PlayerRayCasting : MonoBehaviour
         _raycastHitsCount = Physics.RaycastNonAlloc(transform.position, transform.TransformDirection(Vector3.forward), _raycastHits, _distance, _layerMask);
         if (_raycastHitsCount > 0)
         {
-            Sprite buttonIcon = _inputManager.GetIconForBinding(_inputManager.Controls.Player.Interaction, out string currentBindingInput);
+            _buttonIcon = _inputManager.GetIconForBinding(_inputManager.Controls.Player.Interaction, out string currentBindingInput);
 
-            if (buttonIcon)
+            if (_buttonIcon)
             {
-                _bindingIconDisplayImage.sprite = buttonIcon;
+                _bindingIconDisplayImage.sprite = _buttonIcon;
                 _bindingIconDisplayImage.gameObject.SetActive(true);
                 _bindingNameDisplayText.gameObject.SetActive(false);
             }

@@ -366,8 +366,7 @@ MonoBehaviour:
   _panels: {fileID: 0}
   _bindingNameDisplayText: {fileID: 0}
   _bindingIconDisplayImage: {fileID: 0}
-  _distanceToObject: 0
-  _distance: 2
+  _distance: 3
   _layerMask:
     serializedVersion: 2
     m_Bits: 512
