@@ -1,18 +1,21 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class FadeOut : MonoBehaviour
+public class FadeOutController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private float _waitForSeconds;
+
+    private Animation _animation;
+
+    private void Start()
     {
-        
+        _animation = GetComponent<Animation>();
+        StartCoroutine(FadeOut());
     }
 
-    // Update is called once per frame
-    void Update()
+    private IEnumerator FadeOut()
     {
-        
+        yield return new WaitForSeconds(_waitForSeconds);
+        _animation.Play();
     }
 }
