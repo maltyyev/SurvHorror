@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -40,7 +41,8 @@ public class PlayerRayCasting : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _raycastHitsCount = Physics.RaycastNonAlloc(transform.position, transform.TransformDirection(Vector3.forward), _raycastHits, _distance, _layerMask);
+        _raycastHitsCount = Physics.RaycastNonAlloc(Camera.main.transform.position, Camera.main.transform.forward, _raycastHits, _distance, _layerMask);
+        
         if (_raycastHitsCount > 0)
         {
             _crosshairImage.sprite = _crosshairSettings.InteractionCrosshair;
@@ -69,11 +71,15 @@ public class PlayerRayCasting : MonoBehaviour
             _panels.SetActive(false);
             _bindingIconDisplayImage.gameObject.SetActive(false);
             _bindingNameDisplayText.gameObject.SetActive(false);
+
+            Array.Clear(_raycastHits, 0, _raycastHits.Length);
         }
     }
 
     private void Interact(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
+        Debug.Log(Camera.main.transform.forward);
+
         if (_raycastHitsCount > 0)
         {
             var _controller = _raycastHits[0].transform.gameObject.GetComponent<BaseInteractionController>();
